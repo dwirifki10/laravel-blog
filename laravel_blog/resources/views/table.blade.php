@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                <table class="table">
+                <span>Jumlah Post 1</span>
+
+                <table class="table mt-3">
                     <thead>
                         <tr class="text-center">
                         <th scope="col">No</th>

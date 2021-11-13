@@ -14,8 +14,28 @@
                         </div>
                     @endif
 
-                    <strong>{{ __('Selamat Datang ' . Auth::user()->name)  }}</strong>
-                    <h4 class="mt-4 text-secondary">Likes & Watchs</h4>
+                    <div class="d-flex">
+                    <img src={{asset('photo/taylor_swift.jpg')}} class="mr-3 rounded-circle" style="width:75px; height:75px;">
+                    <table>
+                        <tr>
+                            <td>
+                                <strong>{{ __(Auth::user()->name)  }} </strong>
+                                <a class="float-right" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-pencil text-dark"></i> <span class="text-secondary">Ubah data</span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-star text-warning" aria-hidden="true"></i> <span class="text-secondary">5</span>
+                                <i class="fa fa-map-marker text-dark ml-2" aria-hidden="true"></i> <span class="text-secondary">New Jersey, Amerika Serikat</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis beatae unde minima at eligendi eos sed eum numquam neque. Laudantium laboriosam enim sapiente quia! Molestiae quam reiciendis necessitatibus maiores dolorem.</p></td>
+                        </tr>
+                    </table>
+                    </div>
+
+                    <h4 class="mt-4 text-secondary">Likes & Viewers</h4>
                     <div class="card-group">
                     @for ($i = 1; $i <= 2; $i++)
                         <div class="card">
@@ -48,5 +68,78 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ubah Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+                <div class="form-group row">
+                    <label for="photo" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
+                            <div class="col-md-6">
+                                <input id="photo" type="file" name="photo">
+                                @error('photo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $photo }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                               <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="new-password">
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
+                            <div class="col-md-6">
+                                <textarea id="status" class="form-control" name="status" required autocomplete="new-status"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
