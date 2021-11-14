@@ -19,6 +19,9 @@ use App\Http\Controllers\Dashboard\PostController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/show/{id}', function () {
+    return view('show');
+});
 
 Auth::routes();
 

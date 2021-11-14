@@ -15,6 +15,7 @@
             <div class="row">
                 @for ($i = 1; $i <= 6; $i++)
                 <div class="col-lg-4">
+                    <a href="/show/{{$i}}" class="text-decoration-none text-dark">
                     <div class="card mb-3">
                         <img class="card-img-top" src="{{asset('photo/taylor_swift.jpg')}}" alt="Card image cap">
                         <div class="card-body">
@@ -23,6 +24,7 @@
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 @endfor
             </div>
