@@ -21,7 +21,6 @@ class CreatePostsTable extends Migration
             $table->string('title', 150);
             $table->text('slug');
             $table->bigInteger('views');
-            $table->bigInteger('likes');
             $table->timestamps();
         });
     }
