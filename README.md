@@ -1,4 +1,5 @@
-# Laravel Blog
+# LARAVEL BLOG
+Laravel Blog is a blog website built using laravel and libraries such as Bootstrap, Laravel UI, CKeditor. This app contains content management, content page and also user access
 
 ## Database Architecture
 ![alt text](https://github.com/dwirifki10/laravel-blog/blob/main/laravel_blog/docs/database_architecture.png)
