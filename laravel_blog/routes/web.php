@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Public\PublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,11 @@ use App\Http\Controllers\Dashboard\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/show/{id}', function () {
-    return view('show');
-});
+Route::get('/', [PublicController::class, 'index'])->name('public');
+Route::get('/show/{id}', [PublicController::class, 'show'])->name('detail');
+Route::post('/comment/{id}', [PublicController::class, 'comment'])->name('comment');
+Route::post('/star', [PublicController::class, 'star'])->name('star');
+Route::get('/category/{id}', [PublicController::class, 'category'])->name('category');
 
 Auth::routes();
 

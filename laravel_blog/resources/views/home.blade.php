@@ -118,7 +118,7 @@
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="new-password">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" name="address" required autocomplete="new-password">
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -129,7 +129,7 @@
                         <div class="form-group row">
                             <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
                             <div class="col-md-6">
-                                <textarea id="status" class="form-control" name="status" required autocomplete="new-status"></textarea>
+                                <textarea id="status" class="form-control" name="status" required autocomplete="new-status" value="{{ old('name') }}"></textarea>
                             </div>
                         </div>
                 </div>

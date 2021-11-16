@@ -4,12 +4,20 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col-lg-12 mb-4">
-            <button type="button" class="btn btn-primary btn-sm mr-2"><i class="fa fa-exchange mr-1" aria-hidden="true"></i> Filter</button>
+            <a href="{{route('public')}}">
+                <button type="button" class="btn btn-primary btn-sm mr-2"><i class="fa fa-exchange mr-1" aria-hidden="true"></i> Filter</button>
+            </a>
             @foreach ( $categories as $category )
                 <a href="{{route('category', $category->id)}}"><button type="button" class="btn btn-light text-secondary btn-sm">{{ $category->tag }}</button></a>
             @endforeach
         </div>
     </div>
+     @if ($posts->isEmpty())
+        <div class="alert alert-info col-lg-12 text-center mt-3" role="alert">
+            Belum ada post yang dibuat. Post tidak ditemukan
+        </div>
+    @endif
+    @if ($posts->isNotEmpty())
     <div class="row">
         <div class="col-lg-9">
             <div class="row">
@@ -24,7 +32,7 @@
                             <p class="card-text">{!! \Illuminate\Support\Str::limit(strip_tags($post->slug), 100, '...') !!}</p>
                             </div>
                             <div class="card-footer">
-                            <small class="text-muted">Last updated {{ $post->created_at->diffForHumans()}}</small>
+                            <small class="text-muted">Last updated {{ $post->updated_at->diffForHumans() }}</small>
                         </div>
                         </div>
                         </a>
@@ -48,5 +56,6 @@
         </div>
     </div>
 </div>
+@endif
 @endsection
 
