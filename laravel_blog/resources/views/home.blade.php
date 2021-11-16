@@ -30,7 +30,7 @@
                     <div class="media-body">
                         <a class="float-right" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-pencil text-dark"></i> <span class="text-secondary">Ubah data</span></a>
                         <h5 class="mt-0"><strong>{{ __(Auth::user()->name) }}</strong></h5>
-                        <i class="fa fa-star text-warning" aria-hidden="true"></i> <span class="text-secondary">5</span>
+                        <i class="fa fa-star text-warning" aria-hidden="true"></i> <span class="text-secondary">{{(__(Auth::user()->starUser->avg('value')) === null) ? 0 : __(Auth::user()->starUser->avg('value')) }}</span>
                         <i class="fa fa-map-marker text-dark ml-2" aria-hidden="true"></i> <span class="text-secondary">{{ __(Auth::user()->address) }}</span>
                         <p>{{__(Auth::user()->status)}}</p>
                     </div>
@@ -38,32 +38,39 @@
 
                     <h4 class="mt-5 text-secondary">Likes & Viewers</h4>
                     <div class="card-group">
-                    @for ($i = 1; $i <= 2; $i++)
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">Views</h5>
+                            <h3 class="card-text">{{$posts->sum('views')}}</p>
+                            </div>
+                            <div class="card-footer">
+                            <small class="text-muted">Last updated {{ Carbon\Carbon::now()->diffForHumans() }}</small>
+                            </div>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                             <h5 class="card-title">Likes</h5>
-                            <h3 class="card-text">{{$i}}</p>
+                            <h3 class="card-text">{{__(Auth::user()->starUser->count('id'))}}</p>
                             </div>
                             <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
+                            <small class="text-muted">Last updated {{ Carbon\Carbon::now()->diffForHumans() }}</small>
                             </div>
                         </div>
-                    @endfor
                     </div>
                     <h4 class="mt-4 text-secondary">Popular Post</h4>
-                    <div class="card-group">
-                    @for ($i = 1; $i <= 3; $i++)
+                        <div class="card-deck">
+                        @foreach ( $posts as $post )
                         <div class="card">
+                            <img src="{{asset('storage/' . $post->photo)}}" alt="">
                             <div class="card-body">
-                            <h5 class="card-title">JavaScript</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5 class="card-title">{{ $post->title}}</h5>
+                            <p class="card-text">{!! \Illuminate\Support\Str::limit(strip_tags($post->slug), 100, '...') !!}</p>
                             </div>
                             <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
+                            <small class="text-muted">Last updated {{ $post->created_at->diffForHumans() }}</small>
                             </div>
                         </div>
-                    @endfor
-                    </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

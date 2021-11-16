@@ -19,6 +19,6 @@ class Stars extends Model
 
     public function postStar(){
         // just having one post
-        return $this->belongsTo(Post::class, 'post_id', 'id');
+        return $this->belongsTo(Posts::class, 'post_id', 'id');
     }
 }

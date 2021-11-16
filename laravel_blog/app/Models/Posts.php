@@ -19,7 +19,7 @@ class Posts extends Model
 
     public function commentPost(){
         // having many posts
-        return $this->hasMany(Comment::class, 'post_id', 'id')->whereNull('parent_id');
+        return $this->hasMany(Comments::class, 'post_id', 'id')->whereNull('parent_id');
     }
 
     public function categoryPost(){
@@ -29,7 +29,7 @@ class Posts extends Model
 
     public function starPost(){
         // having many stars
-        return $this->hasMany(Star::class, 'post_id', 'id');
+        return $this->hasMany(Stars::class, 'post_id', 'id');
     }
 
 }

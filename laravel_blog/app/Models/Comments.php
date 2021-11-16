@@ -14,7 +14,7 @@ class Comments extends Model
     // Relationships
     public function postComment(){
         // just having one post
-       return $this->belongsTo(Post::class, 'post_id', 'id');
+       return $this->belongsTo(Posts::class, 'post_id', 'id');
     }
 
     public function userComment(){
@@ -24,6 +24,6 @@ class Comments extends Model
 
     public function child(){
         // having many comments
-        return $this->hasMany(Comment::class, 'parent_id', 'id');
+        return $this->hasMany(Comments::class, 'parent_id', 'id');
     }
 }

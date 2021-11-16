@@ -36,7 +36,7 @@
                             <img src="{{ url('/') . Storage::url($post['photo']) }}" width="35">
                         </td>
                         <td>{{ $post['title'] }}</td>
-                        <td> {!! \Illuminate\Support\Str::limit($post['slug'], 200, $end='...') !!}
+                        <td> {!! \Illuminate\Support\Str::limit(strip_tags($post['slug']), 200, $end='...') !!}
                             <a href="#" class="badge badge-success">Detail</a>
                         </td>
                         <td>

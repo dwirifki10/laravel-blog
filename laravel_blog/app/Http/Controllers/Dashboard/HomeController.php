@@ -6,6 +6,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Categories;
+use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -27,7 +29,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['post' => 'Home']);
+        try {
+            $posts = Posts::where('user_id', Auth::user()->id)
+                        ->orderBy('views', 'desc')
+                        ->take(3)
+                        ->get();
+            return view('home', ['posts' => $posts]);
+        } catch (Exception) {
+            return redirect('home');
+        }
     }
 
     /**
