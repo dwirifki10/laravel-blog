@@ -8,6 +8,7 @@ use App\Models\Categories;
 use App\Models\Comments;
 use App\Models\Posts;
 use App\Models\Stars;
+use Illuminate\Support\Facades\DB;
 use Exception;
 
 class PublicController extends Controller
@@ -25,6 +26,7 @@ class PublicController extends Controller
 
     public function show(Request $request, $id)
     {
+        DB::beginTransaction();
         try {
             $popular = $this->popular();
             $post = Posts::with(['userPost', 'commentPost.userComment',
@@ -32,8 +34,11 @@ class PublicController extends Controller
                                 'starPost'
                         ])->where('id', $id)
                         ->first();
+            Posts::where('id', $id)->update(['views' => DB::raw('views+1')]);
+            DB::commit();
             return view('show', compact('post', 'popular'));
         } catch (Exception) {
+            DB::rollBack();
             return redirect('/');
         }
     }

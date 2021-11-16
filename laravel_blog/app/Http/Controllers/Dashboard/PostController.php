@@ -125,7 +125,6 @@ class PostController extends Controller
             $user = Auth::user()->id;
             $post = Posts::where('id', $id)->where('user_id', $user)->first();
             if(Storage::disk('local')->exists($post->photo)){
-                dd(Storage::disk('local')->exists($post->photo), $post->photo);
                 Storage::delete($post->photo);
             }
             $post->delete();
