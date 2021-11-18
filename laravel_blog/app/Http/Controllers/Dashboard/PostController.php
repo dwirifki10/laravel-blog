@@ -61,7 +61,7 @@ class PostController extends Controller
                 }
                 return Redirect::back()->withErrors(['error' => 'Anda belum memasukan gambar']);
             }
-        } catch (Exception) {
+        } catch (Exception $err) {
             return false;
         }
     }
@@ -83,7 +83,7 @@ class PostController extends Controller
 
            Posts::create($validation);
            return redirect('table');
-       } catch (Exception) {
+       } catch (Exception $err) {
            return redirect('post');
        }
     }
@@ -129,7 +129,7 @@ class PostController extends Controller
             }
             $post->delete();
             return redirect('table');
-        } catch (Exception) {
+        } catch (Exception $err) {
             return redirect('table');
         }
     }
