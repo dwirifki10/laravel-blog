@@ -92,7 +92,7 @@ class PublicController extends Controller
         try {
             Stars::create($validation);
             return redirect('show/' . $request->post_id);
-        } catch (Exception) {
+        } catch (Exception $err) {
             return redirect('/');
         }
     }
