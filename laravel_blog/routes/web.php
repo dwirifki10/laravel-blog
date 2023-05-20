@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Dashboard\HomeController;
@@ -23,6 +24,12 @@ Route::get('/show/{id}', [PublicController::class, 'show'])->name('detail');
 Route::post('/comment/{id}', [PublicController::class, 'comment'])->name('comment');
 Route::post('/star', [PublicController::class, 'star'])->name('star');
 Route::get('/category/{id}', [PublicController::class, 'category'])->name('category');
+
+Route::resource('/admin', AdminController::class);
+Route::get("/login/admin", function() {
+    return view("dashboard.authentication.login");
+});
+
 
 Auth::routes();
 

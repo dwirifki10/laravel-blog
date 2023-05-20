@@ -62,6 +62,7 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                                <a href="/login/admin" class="d-block mt-3">As an Admin, Here !!!</a>
                             </div>
                         </div>
                     </form>

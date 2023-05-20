@@ -29,10 +29,10 @@
                     <img class="align-self-start mr-3 rounded-circle" style="width: 75px; height: 75px;" src="{{ (__(Auth::user()->photo) === null) ? asset('default/default.jpg') : asset('storage/'. __(Auth::user()->photo)) }}" alt="Generic placeholder image">
                     <div class="media-body">
                         <a class="float-right" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-pencil text-dark"></i> <span class="text-secondary">Ubah data</span></a>
-                        <h5 class="mt-0"><strong>{{ __(Auth::user()->name) }}</strong></h5>
+                        <h5 class="mt-0 mb-0"><strong>{{ __(Auth::user()->name) }}</strong></h5>
+                        <p class="h6 mt-1 mb-1">{{__(Auth::user()->status)}}</p>
                         <i class="fa fa-star text-warning" aria-hidden="true"></i> <span class="text-secondary">{{(__(Auth::user()->starUser->avg('value')) === null) ? 0 : __(Auth::user()->starUser->avg('value')) }}</span>
                         <i class="fa fa-map-marker text-dark ml-2" aria-hidden="true"></i> <span class="text-secondary">{{ __(Auth::user()->address) }}</span>
-                        <p>{{__(Auth::user()->status)}}</p>
                     </div>
                     </div>
 
