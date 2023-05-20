@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\UserController;
-use App\Http\Controllers\Public\PublicController;
+use App\Http\Controllers\Umum\PublicController;
 
 /*
 |--------------------------------------------------------------------------

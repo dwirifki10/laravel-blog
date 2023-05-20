@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Public;
+namespace App\Http\Controllers\Umum;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class PublicController extends Controller
             $categories = Categories::all();
             $posts = $this->popular();
             return view('welcome', compact('categories', 'posts'));
-        } catch (Exception) {
+        } catch (Exception $err) {
             return redirect('/');
         }
     }
@@ -37,7 +37,7 @@ class PublicController extends Controller
             Posts::where('id', $id)->update(['views' => DB::raw('views+1')]);
             DB::commit();
             return view('show', compact('post', 'popular'));
-        } catch (Exception) {
+        } catch (Exception $err) {
             DB::rollBack();
             return redirect('/');
         }
@@ -48,7 +48,7 @@ class PublicController extends Controller
         try {
             $posts = Posts::orderBy('views', 'desc')->paginate(6);
             return $posts;
-        } catch (Exception) {
+        } catch (Exception $err) {
             return redirect('/');
         }
     }
@@ -71,7 +71,7 @@ class PublicController extends Controller
         try {
             Comments::create($validation);
             return redirect('show/'. $id);
-        } catch (Exception) {
+        } catch (Exception $err) {
             return redirect('/');
         }
     }
@@ -92,7 +92,7 @@ class PublicController extends Controller
         try {
             Stars::create($validation);
             return redirect('show/' . $request->post_id);
-        } catch (Exception) {
+        } catch (Exception $err) {
             return redirect('/');
         }
     }
@@ -105,7 +105,6 @@ class PublicController extends Controller
             $categories = Categories::all();
             return view('category', compact('posts', 'categories'));
         } catch (Exception $err) {
-            dd($err);
             return redirect('/');
         }
     }

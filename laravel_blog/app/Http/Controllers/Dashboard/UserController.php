@@ -60,7 +60,7 @@ class UserController extends Controller
                 }
                 return null;
             }
-        } catch (Exception) {
+        } catch (Exception $err) {
             return false;
         }
     }
@@ -84,7 +84,7 @@ class UserController extends Controller
 
            $user->update($validation);
            return redirect('home');
-        } catch (Exception) {
+        } catch (Exception $err) {
             return redirect('home');
         }
     }

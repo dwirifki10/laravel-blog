@@ -35,7 +35,7 @@ class HomeController extends Controller
                         ->take(3)
                         ->get();
             return view('home', ['posts' => $posts]);
-        } catch (Exception) {
+        } catch (Exception $err) {
             return redirect('home');
         }
     }
@@ -51,7 +51,7 @@ class HomeController extends Controller
             $categories = Categories::get();
             return view('post', ['categories' => $categories]);
         } catch (QueryException $err) {
-            return view('post', ['error' => $err]);
+            return redirect('post');
         }
     }
 
@@ -66,7 +66,7 @@ class HomeController extends Controller
             $posts = Posts::where('user_id', Auth::user()->id)->paginate(5);
             return view('table', ['posts' => $posts]);
         } catch (QueryException $err) {
-            return view('table', ['error' => $err]);
+            return redirect('table');
         }
     }
 
@@ -87,7 +87,7 @@ class HomeController extends Controller
             $categories = Categories::get();
             return view('update', compact('post', 'categories'));
         } catch (QueryException $err) {
-            return redirect('post', ['error' => $err]);
+            return redirect('post');
         }
     }
 
